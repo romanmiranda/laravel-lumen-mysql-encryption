@@ -1,21 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace IonGhitun\MysqlEncryption\Tests\Models;
+namespace RomanMiranda\MysqlEncryption\Tests\Models;
 
-use IonGhitun\MysqlEncryption\Models\BaseModel;
+use RomanMiranda\MysqlEncryption\Models\BaseModel;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
+use ReflectionException;
 
 /**
+ * Class BaseModelTest
  *
+ * @package RomanMiranda\MysqlEncryption\Tests\Models
  */
 class BaseModelTest extends TestCase
 {
     /**
      * Test getAnonymizable
      */
-    public function testGetAnonymizable(): void
+    public function testGetAnonymizable()
     {
         $model = new BaseModel();
 
@@ -25,7 +28,7 @@ class BaseModelTest extends TestCase
     /**
      * Test getEncrypted
      */
-    public function testGetEncrypted(): void
+    public function testGetEncrypted()
     {
         $model = new BaseModel();
 
@@ -35,7 +38,7 @@ class BaseModelTest extends TestCase
     /**
      * Test getAttribute
      */
-    public function tesBaseGetAttribute(): void
+    public function tesBaseGetAttribute()
     {
         $model = new BaseModel();
 
@@ -46,8 +49,10 @@ class BaseModelTest extends TestCase
 
     /**
      * Test getAttribute
+     *
+     * @throws ReflectionException
      */
-    public function testEncryptedGetAttribute(): void
+    public function testEncryptedGetAttribute()
     {
         $model = new BaseModel();
 
@@ -66,7 +71,7 @@ class BaseModelTest extends TestCase
     /**
      * Test toArray
      */
-    public function testToArray(): void
+    public function testToArray()
     {
         $model = new BaseModel();
 
@@ -77,8 +82,10 @@ class BaseModelTest extends TestCase
 
     /**
      * Test toArray
+     *
+     * @throws ReflectionException
      */
-    public function testEncryptedToArray(): void
+    public function testEncryptedToArray()
     {
         $model = new BaseModel();
 
@@ -97,7 +104,7 @@ class BaseModelTest extends TestCase
     /**
      * Test getOriginal
      */
-    public function testGetOriginal(): void
+    public function testGetOriginal()
     {
         $model = new BaseModel();
 
@@ -106,8 +113,10 @@ class BaseModelTest extends TestCase
 
     /**
      * Test anonymize
+     *
+     * @throws ReflectionException
      */
-    public function testAnonymize(): void
+    public function testAnonymize()
     {
         $model = new BaseModel();
 

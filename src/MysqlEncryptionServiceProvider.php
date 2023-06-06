@@ -1,6 +1,6 @@
 <?php
 
-namespace IonGhitun\MysqlEncryption;
+namespace RomanMiranda\MysqlEncryption;
 
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -8,22 +8,29 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 /**
+ * Class MysqlEncryptionServiceProvider
  *
+ * @package RomanMiranda\MysqlEncryption\Providers
  */
 class MysqlEncryptionServiceProvider extends ServiceProvider
 {
     /**
-     * @return void
+     * Bootstrap the application services.
      */
-    public function boot(): void
+    public function boot()
     {
         $this->addValidators();
+
+        $this->publishes([
+            __DIR__ . '/../config/mysqlencrypt.php' => config_path('mysqlencrypt.php'),
+        ],'mysqlencrypt');
+
     }
 
     /**
-     * @return void
+     * Add validators for unique and exists.
      */
-    private function addValidators(): void
+    private function addValidators()
     {
         /**
          * Validate unique binary encrypted
@@ -33,10 +40,10 @@ class MysqlEncryptionServiceProvider extends ServiceProvider
                 throw new Exception('unique_encrypted requires at least one parameter');
             }
 
-            $field = $parameters[1] ?? $attribute;
-            $ignore = $parameters[2] ?? null;
+            $field = isset($parameters[1]) ? $parameters[1] : $attribute;
+            $ignore = isset($parameters[2]) ? $parameters[2] : null;
 
-            $items = DB::select("SELECT count(*) as aggregate FROM `" . $parameters[0] . "` WHERE AES_DECRYPT(`" . $field . "`, '" . getenv("ENCRYPTION_KEY") . "') LIKE " . DB::getPdo()->quote($value) . " COLLATE utf8mb4_general_ci" . ($ignore ? " AND id != " . $ignore : ''));
+            $items = DB::select("SELECT count(*) as aggregate FROM `".$parameters[0]."` WHERE AES_DECRYPT(`".$field."`, '".config('mysqlencrypt.key')."') LIKE '".$value."' COLLATE utf8mb4_general_ci".($ignore ? " AND id != ".$ignore : ''));
 
             return $items[0]->aggregate === 0;
         });
@@ -49,18 +56,19 @@ class MysqlEncryptionServiceProvider extends ServiceProvider
                 throw new Exception('exists_encrypted requires at least one parameter');
             }
 
-            $field = $parameters[1] ?? $attribute;
+            $field = isset($parameters[1]) ? $parameters[1] : $attribute;
 
-            $items = DB::select("SELECT count(*) as aggregate FROM `" . $parameters[0] . "` WHERE AES_DECRYPT(`" . $field . "`, '" . getenv("ENCRYPTION_KEY") . "') LIKE " . DB::getPdo()->quote($value) . " COLLATE utf8mb4_general_ci");
+            $items = DB::select("SELECT count(*) as aggregate FROM `".$parameters[0]."` WHERE AES_DECRYPT(`".$field."`, '".config('mysqlencrypt.key')."') LIKE '".$value."' COLLATE utf8mb4_general_ci");
 
             return $items[0]->aggregate > 0;
         });
     }
 
     /**
-     * @return void
+     * Register the application services.
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__.'/../config/mysqlencrypt.php', 'mysqlencrypt');
     }
 }
