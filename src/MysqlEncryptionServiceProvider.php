@@ -1,6 +1,6 @@
 <?php
 
-namespace RomanMiranda\MysqlEncryption;
+namespace IonGhitun\MysqlEncryption;
 
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -10,7 +10,7 @@ use Illuminate\Support\ServiceProvider;
 /**
  * Class MysqlEncryptionServiceProvider
  *
- * @package RomanMiranda\MysqlEncryption\Providers
+ * @package IonGhitun\MysqlEncryption\Providers
  */
 class MysqlEncryptionServiceProvider extends ServiceProvider
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace RomanMiranda\MysqlEncryption\Models;
+namespace IonGhitun\MysqlEncryption\Models;
 
 use Faker\Factory;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,7 +16,7 @@ use Illuminate\Support\Arr;
  * @method static Builder|self orWhereNotEncrypted($column, $value)
  * @method static Builder|self orderByEncrypted($column, $direction)
  *
- * @package RomanMiranda\MysqlEncryption\Models
+ * @package IonGhitun\MysqlEncryption\Models
  */
 class BaseModel extends Model
 {
