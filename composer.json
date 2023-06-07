@@ -1,5 +1,5 @@
 {
-  "name": "romanmiranda/laravel-lumen-mysql-encryption",
+  "name": "ionghitun/laravel-lumen-mysql-encryption",
   "description": "Database fields encryption in laravel and lumen for mysql databases with native search and anonymize data for GDPR.",
   "keywords": [
     "laravel",
@@ -16,7 +16,7 @@
       "email": "ionghitun@gmail.com"
     }
   ],
-  "homepage": "https://github.com/romanmiranda/laravel-lumen-mysql-encryption",
+  "homepage": "https://github.com/ionghitun/laravel-lumen-mysql-encryption",
   "type": "library",
   "require": {
     "php": ">=7.2",
@@ -31,18 +31,18 @@
   "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
-      "RomanMiranda\\MysqlEncryption\\": "src/"
+      "IonGhitun\\MysqlEncryption\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "RomanMiranda\\MysqlEncryption\\Tests\\": "tests/"
+      "IonGhitun\\MysqlEncryption\\Tests\\": "tests/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "RomanMiranda\\MysqlEncryption\\MysqlEncryptionServiceProvider"
+        "IonGhitun\\MysqlEncryption\\MysqlEncryptionServiceProvider"
       ]
     }
   }

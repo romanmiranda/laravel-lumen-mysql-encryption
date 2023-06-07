@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace RomanMiranda\MysqlEncryption\Tests\Models;
+namespace IonGhitun\MysqlEncryption\Tests\Models;
 
-use RomanMiranda\MysqlEncryption\Models\BaseModel;
+use IonGhitun\MysqlEncryption\Models\BaseModel;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionException;
@@ -11,7 +11,7 @@ use ReflectionException;
 /**
  * Class BaseModelTest
  *
- * @package RomanMiranda\MysqlEncryption\Tests\Models
+ * @package IonGhitun\MysqlEncryption\Tests\Models
  */
 class BaseModelTest extends TestCase
 {
